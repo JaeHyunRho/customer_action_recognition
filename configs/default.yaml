@@ -1,0 +1,112 @@
+classes:
+- Reach To Shelf
+- Retract From Shelf
+- Hand In Shelf
+- Inspect Product
+- Inspect Shelf
+include_background: false
+pose:
+  weights: weights/yolo11n-pose.pt
+  base_weights: yolo11n-pose.pt
+  imgsz: 640
+  conf: 0.35
+  iou: 0.5
+  max_det: 10
+  device: auto
+  half: false
+  head_removal: true
+  upper_body_bonus: 0.5
+  backend: pytorch
+tracker:
+  enabled: true
+  max_age: 30
+  n_init: 3
+  max_iou_distance: 0.7
+  max_cosine_distance: 0.2
+  nn_budget: 100
+  ema_alpha: 0.9
+  mc_lambda: 0.98
+  only_position: false
+  appearance: histogram
+  reid_weights: null
+sequence:
+  window: 30
+  train_stride: 5
+  infer_stride: 1
+  fps: 10
+  normalize: torso
+  use_velocity: false
+  max_gap: 12
+  min_valid_ratio: 0.3
+  conf_threshold: 0.2
+stgcn:
+  in_channels: 3
+  channels:
+  - 64
+  - 64
+  - 128
+  - 128
+  - 256
+  - 256
+  groups: 2
+  temporal_kernel: 9
+  dropout: 0.25
+  leaky_slope: 0.1
+  edge_importance: true
+lstm:
+  hidden_size: 128
+  num_layers: 3
+  dense_hidden: 32
+  dropout: 0.25
+  leaky_slope: 0.1
+train:
+  epochs: 300
+  batch_size: 128
+  lr: 0.001
+  weight_decay: 0.0001
+  optimizer: adam
+  loss: cce
+  early_stop_patience: 30
+  early_stop_metric: val_acc
+  val_split: 0.3
+  num_workers: 4
+  seed: 42
+  amp: false
+  class_balanced: false
+  balance_ratio: 0.0
+  aug_rotation_deg: 30.0
+  aug_scale: 0.15
+  aug_jitter: 0.01
+  aug_flip_prob: 0.5
+pose_train:
+  epochs: 100
+  batch_size: 16
+  imgsz: 640
+  lr0: 0.001
+  patience: 25
+  pose_weight: 12.0
+  kobj_weight: 2.0
+  freeze: null
+paths:
+  root: .
+  raw: data/raw
+  interim: data/interim
+  processed: data/processed
+  videos: data/videos
+  weights: weights
+  runs: runs
+runtime:
+  source: '0'
+  action_model: stgcn
+  action_weights: runs/action/stgcn/best.pt
+  min_action_conf: 0.4
+  smooth_window: 5
+  display: true
+  save_video: null
+  save_csv: null
+  max_fps: null
+  action_every: 1
+  camera_width: 1280
+  camera_height: 720
+  camera_fps: 30
+  csi_camera: false

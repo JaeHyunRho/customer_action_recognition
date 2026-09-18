@@ -1,0 +1,41 @@
+# Jetson Orin NX profile: same models, settings tuned for on-device latency.
+#
+#   .venv/bin/python tools/run_recognition.py --config configs/jetson.yaml --source 0
+#
+# Before trusting any number here, raise the power mode:
+#   sudo nvpmodel -m 0 && sudo jetson_clocks
+
+pose:
+  weights: weights/yolo11n-pose.pt
+  # Point this at weights/yolo11n-pose.engine once you have built a TensorRT
+  # engine (tools/export_models.py --pose ... --format engine --half).
+  imgsz: 480          # 640 -> 480 measured ~1.3x faster on Orin NX
+  conf: 0.35
+  device: cuda:0
+  half: true
+
+tracker:
+  enabled: true
+  appearance: histogram   # set to none if only one shopper is ever in frame
+  max_age: 30
+  n_init: 3
+
+sequence:
+  window: 30
+  normalize: torso
+  conf_threshold: 0.2
+  min_valid_ratio: 0.3
+
+runtime:
+  action_model: stgcn
+  action_weights: runs/action/stgcn/best.pt
+  # The 30-frame buffer barely changes frame to frame, so classifying every
+  # third frame costs almost no accuracy and frees the GPU for pose.
+  action_every: 3
+  smooth_window: 5
+  min_action_conf: 0.4
+  camera_width: 1280
+  camera_height: 720
+  camera_fps: 30
+  csi_camera: false
+  display: true

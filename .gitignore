@@ -1,0 +1,30 @@
+# Virtual environment (Jetson-specific wheels; rebuild with scripts/setup_jetson.sh)
+.venv/
+venv/
+
+# Data and artifacts
+*.pdf
+*.csv
+data/raw/
+data/interim/
+data/processed/
+data/videos/
+runs/
+weights/*.pt
+weights/*.onnx
+weights/*.engine
+weights/*.tflite
+!weights/.gitkeep
+*.pt
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store

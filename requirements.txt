@@ -1,0 +1,35 @@
+# Core. On a Jetson, DO NOT let pip replace an existing CUDA-enabled torch --
+# install with `pip install --no-deps ultralytics` instead and see README §4.
+torch>=2.0
+torchvision>=0.15
+ultralytics>=8.3.0
+ultralytics-thop>=2.0
+
+# Data and math
+numpy>=1.24
+scipy>=1.10           # linear_sum_assignment (tracker), loadmat (MERL labels)
+opencv-python>=4.8    # skip if the system already provides cv2, as JetPack does
+pandas>=2.0
+PyYAML>=6.0
+
+# Plots and progress
+matplotlib>=3.7
+tqdm>=4.65
+
+# Runtime metrics
+psutil>=5.9
+py-cpuinfo>=9.0
+
+# ultralytics runtime extras
+polars>=0.20
+nvidia-ml-py>=12.0
+
+# Export (optional)
+onnx>=1.14
+onnxruntime>=1.15
+# tensorrt            # ships with JetPack; do not install from pip on Jetson
+# onnx2tf             # only needed for the thesis' TFLite route
+# tensorflow          # ditto
+
+# Tests
+pytest>=7.4
