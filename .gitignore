@@ -10,12 +10,7 @@ data/interim/
 data/processed/
 data/videos/
 runs/
-weights/*.pt
-weights/*.onnx
-weights/*.engine
-weights/*.tflite
 !weights/.gitkeep
-*.pt
 
 # Python
 __pycache__/

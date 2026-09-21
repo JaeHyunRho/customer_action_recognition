@@ -1,0 +1,34 @@
+{
+  "source": "video:1_2_crop.mp4 920x680 @30.0fps frames=3872",
+  "frames": 3872,
+  "tracks_seen": 3,
+  "predictions": 3491,
+  "label_counts": {
+    "Inspect Product": 1422,
+    "Hand In Shelf": 879,
+    "Inspect Shelf": 716,
+    "Reach To Shelf": 270,
+    "Retract From Shelf": 204
+  },
+  "runtime": {
+    "frames": 3872,
+    "elapsed_s": 273.12,
+    "fps": 14.18,
+    "latency_ms": 70.54,
+    "pose_ms": 39.37,
+    "pose_p95_ms": 41.03,
+    "track_ms": 0.09,
+    "track_p95_ms": 0.27,
+    "action_ms": 2.17,
+    "action_p95_ms": 14.52,
+    "total_ms": 41.68,
+    "total_p95_ms": 53.91,
+    "process_rss_mb": 1246.3,
+    "ram_used_mb": 11538.1,
+    "ram_total_mb": 16416.1,
+    "gpu_alloc_mb": 61.2,
+    "gpu_reserved_mb": 107.0,
+    "gpu_used_mb": 11539.6,
+    "gpu_total_mb": 16416.1
+  }
+}

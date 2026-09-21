@@ -179,6 +179,20 @@ def quantize_torch_int8(model, output: str | Path) -> Tuple[object, Path]:
     output = Path(output)
     output.parent.mkdir(parents=True, exist_ok=True)
 
+    # A fresh aarch64 build reports engine "none" until one is selected, and
+    # quantize_dynamic then dies with "NoQEngine". qnnpack is the ARM backend.
+    if torch.backends.quantized.engine in (None, "none", ""):
+        available = list(torch.backends.quantized.supported_engines)
+        for candidate in ("qnnpack", "fbgemm", "x86"):
+            if candidate in available:
+                torch.backends.quantized.engine = candidate
+                LOGGER.info("selected quantization engine: %s", candidate)
+                break
+        else:
+            raise RuntimeError(
+                f"no usable quantization backend; torch reports {available}"
+            )
+
     model = model.eval().cpu()
     quantized = torch.ao.quantization.quantize_dynamic(
         model, {torch.nn.Linear, torch.nn.LSTM}, dtype=torch.qint8
