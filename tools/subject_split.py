@@ -8,6 +8,7 @@ does the training and the window-level test score; this tool does the rest::
     intersect  keep only the frames every given pose model detected
     stats      windows, bridged gaps and real time span of a store
     end2end    accuracy over every ground-truth end frame, missed detections counted wrong
+    predict    per-window test predictions and labels of one checkpoint (.npz)
     int8       dynamic weight-only INT8 copy of a checkpoint, scored on the test store
     aggregate  seeds -> mean, subject bootstrap interval, paired model difference
     report     every finished run under runs/subject_split/action in one JSON and one table
@@ -269,6 +270,25 @@ def cmd_end2end(args) -> int:
     return 0
 
 
+def cmd_predict(args) -> int:
+    """Per-window test predictions through the same path as ``int8``/``end2end``."""
+    model, cfg, device = _load(args.checkpoint)
+    store = SkeletonStore.load(args.store)
+    windows = _cut_windows(store, cfg)
+    y_true = np.array([label for _, label in windows])
+    y_pred = _predict(model, cfg, store, windows, device)
+    out = Path(args.out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    np.savez_compressed(
+        out, y_true=y_true, y_pred=y_pred, rows=np.stack([idx for idx, _ in windows]),
+        clip=np.array([store.clip_names[int(store.clip_ids[idx[-1]])] for idx, _ in windows]),
+        end_frame=np.array([int(store.frames[idx[-1]]) for idx, _ in windows]),
+    )
+    LOGGER.info("%s: %d windows, accuracy %.4f -> %s", args.checkpoint, len(windows),
+                float((y_true == y_pred).mean()), out)
+    return 0
+
+
 def cmd_int8(args) -> int:
     import torch
 
@@ -485,6 +505,12 @@ def main(argv=None) -> int:
     p.add_argument("--merl", default="data/raw/merl")
     p.add_argument("--out", required=True)
     p.set_defaults(fn=cmd_end2end)
+
+    p = sub.add_parser("predict", help="save per-window predictions and labels of a checkpoint on a store")
+    p.add_argument("--checkpoint", required=True)
+    p.add_argument("--store", required=True)
+    p.add_argument("--out", required=True, help=".npz with y_true, y_pred, rows, clip, end_frame")
+    p.set_defaults(fn=cmd_predict)
 
     p = sub.add_parser("int8", help="dynamic weight-only INT8 copy, scored on the test store")
     p.add_argument("--checkpoint", required=True)

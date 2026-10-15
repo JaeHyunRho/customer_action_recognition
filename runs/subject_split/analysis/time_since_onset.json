@@ -1,0 +1,208 @@
+{
+  "bins_seconds": [
+    [
+      0.0,
+      0.25
+    ],
+    [
+      0.25,
+      0.55
+    ],
+    [
+      0.55,
+      1.05
+    ],
+    [
+      1.05,
+      2.05
+    ],
+    [
+      2.05,
+      2.95
+    ],
+    [
+      2.95,
+      null
+    ]
+  ],
+  "bin_labels": [
+    "0–0.25",
+    "0.25–0.55",
+    "0.55–1.05",
+    "1.05–2.05",
+    "2.05–2.95",
+    "≥2.95"
+  ],
+  "windows": 5862,
+  "fps_read_from_videos": [
+    30.0
+  ],
+  "elapsed_rule": "(f_end - f_start) / fps; f_start = first frame of the uninterrupted frame_labels run ending at f_end",
+  "accuracy": "per-window argmax; no majority vote, no confidence threshold",
+  "checkpoints": {
+    "stgcn": [
+      "runs/subject_split/action/e1_custom_stgcn_s42/best.pt",
+      "runs/subject_split/action/e1_custom_stgcn_s43/best.pt",
+      "runs/subject_split/action/e1_custom_stgcn_s44/best.pt"
+    ],
+    "lstm": [
+      "runs/subject_split/action/e1_custom_lstm_s42/best.pt",
+      "runs/subject_split/action/e1_custom_lstm_s43/best.pt",
+      "runs/subject_split/action/e1_custom_lstm_s44/best.pt"
+    ]
+  },
+  "store": "data/processed/subject_split/custom_test.npz",
+  "bins": [
+    {
+      "bin": "0–0.25",
+      "n": 699,
+      "single_action_share": 0.0,
+      "stgcn": {
+        "seeds": {
+          "42": 0.3519,
+          "43": 0.3848,
+          "44": 0.3391
+        },
+        "mean": 0.3586,
+        "std": 0.0236
+      },
+      "lstm": {
+        "seeds": {
+          "42": 0.3448,
+          "43": 0.3362,
+          "44": 0.3391
+        },
+        "mean": 0.34,
+        "std": 0.0044
+      }
+    },
+    {
+      "bin": "0.25–0.55",
+      "n": 783,
+      "single_action_share": 0.0,
+      "stgcn": {
+        "seeds": {
+          "42": 0.6105,
+          "43": 0.6169,
+          "44": 0.5658
+        },
+        "mean": 0.5977,
+        "std": 0.0278
+      },
+      "lstm": {
+        "seeds": {
+          "42": 0.5773,
+          "43": 0.5722,
+          "44": 0.5773
+        },
+        "mean": 0.5756,
+        "std": 0.0029
+      }
+    },
+    {
+      "bin": "0.55–1.05",
+      "n": 1150,
+      "single_action_share": 0.0,
+      "stgcn": {
+        "seeds": {
+          "42": 0.7635,
+          "43": 0.7461,
+          "44": 0.7574
+        },
+        "mean": 0.7557,
+        "std": 0.0088
+      },
+      "lstm": {
+        "seeds": {
+          "42": 0.7635,
+          "43": 0.7765,
+          "44": 0.76
+        },
+        "mean": 0.7667,
+        "std": 0.0087
+      }
+    },
+    {
+      "bin": "1.05–2.05",
+      "n": 1142,
+      "single_action_share": 0.0,
+      "stgcn": {
+        "seeds": {
+          "42": 0.7461,
+          "43": 0.7137,
+          "44": 0.7399
+        },
+        "mean": 0.7332,
+        "std": 0.0172
+      },
+      "lstm": {
+        "seeds": {
+          "42": 0.7399,
+          "43": 0.7189,
+          "44": 0.7364
+        },
+        "mean": 0.7318,
+        "std": 0.0113
+      }
+    },
+    {
+      "bin": "2.05–2.95",
+      "n": 515,
+      "single_action_share": 0.0738,
+      "stgcn": {
+        "seeds": {
+          "42": 0.7573,
+          "43": 0.7689,
+          "44": 0.7748
+        },
+        "mean": 0.767,
+        "std": 0.0089
+      },
+      "lstm": {
+        "seeds": {
+          "42": 0.7456,
+          "43": 0.7592,
+          "44": 0.7573
+        },
+        "mean": 0.754,
+        "std": 0.0074
+      }
+    },
+    {
+      "bin": "≥2.95",
+      "n": 1573,
+      "single_action_share": 1.0,
+      "stgcn": {
+        "seeds": {
+          "42": 0.7966,
+          "43": 0.8023,
+          "44": 0.8277
+        },
+        "mean": 0.8089,
+        "std": 0.0166
+      },
+      "lstm": {
+        "seeds": {
+          "42": 0.8061,
+          "43": 0.7883,
+          "44": 0.8061
+        },
+        "mean": 0.8002,
+        "std": 0.0103
+      }
+    }
+  ],
+  "std": "sample standard deviation over the 3 seeds (ddof=1)",
+  "overall": {
+    "stgcn": [
+      0.6989,
+      0.6965,
+      0.6989
+    ],
+    "lstm": [
+      0.694,
+      0.6871,
+      0.6929
+    ]
+  }
+}

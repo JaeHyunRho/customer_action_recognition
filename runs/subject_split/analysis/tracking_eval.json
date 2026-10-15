@@ -1,0 +1,799 @@
+{
+  "pose_only": {
+    "accuracy": 0.9199,
+    "precision": 0.9988,
+    "recall": 0.921,
+    "f1": 0.9583,
+    "tp": 35515,
+    "fp": 43,
+    "fn": 3048,
+    "frames": 38563,
+    "frames_with_second_person": 42
+  },
+  "pose_with_tracker": {
+    "accuracy": 0.9177,
+    "precision": 0.9998,
+    "recall": 0.9179,
+    "f1": 0.9571,
+    "tp": 35397,
+    "fp": 8,
+    "fn": 3166,
+    "frames": 38563,
+    "frames_with_second_person": 8,
+    "id_switches": 67
+  },
+  "per_video": {
+    "27_1": {
+      "pose_only": {
+        "accuracy": 0.9011,
+        "precision": 1.0,
+        "recall": 0.9011,
+        "f1": 0.948,
+        "tp": 1221,
+        "fp": 0,
+        "fn": 134,
+        "frames": 1355,
+        "frames_with_second_person": 0
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.8989,
+        "precision": 1.0,
+        "recall": 0.8989,
+        "f1": 0.9468,
+        "tp": 1218,
+        "fp": 0,
+        "fn": 137,
+        "frames": 1355,
+        "frames_with_second_person": 0,
+        "id_switches": 2
+      }
+    },
+    "27_2": {
+      "pose_only": {
+        "accuracy": 0.9064,
+        "precision": 0.9968,
+        "recall": 0.909,
+        "f1": 0.9509,
+        "tp": 1239,
+        "fp": 4,
+        "fn": 124,
+        "frames": 1363,
+        "frames_with_second_person": 4
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.9061,
+        "precision": 1.0,
+        "recall": 0.9061,
+        "f1": 0.9507,
+        "tp": 1235,
+        "fp": 0,
+        "fn": 128,
+        "frames": 1363,
+        "frames_with_second_person": 0,
+        "id_switches": 2
+      }
+    },
+    "27_3": {
+      "pose_only": {
+        "accuracy": 0.8959,
+        "precision": 1.0,
+        "recall": 0.8959,
+        "f1": 0.9451,
+        "tp": 1213,
+        "fp": 0,
+        "fn": 141,
+        "frames": 1354,
+        "frames_with_second_person": 0
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.8907,
+        "precision": 1.0,
+        "recall": 0.8907,
+        "f1": 0.9422,
+        "tp": 1206,
+        "fp": 0,
+        "fn": 148,
+        "frames": 1354,
+        "frames_with_second_person": 0,
+        "id_switches": 2
+      }
+    },
+    "28_1": {
+      "pose_only": {
+        "accuracy": 0.917,
+        "precision": 0.9936,
+        "recall": 0.9225,
+        "f1": 0.9567,
+        "tp": 1238,
+        "fp": 8,
+        "fn": 104,
+        "frames": 1342,
+        "frames_with_second_person": 8
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.9154,
+        "precision": 0.996,
+        "recall": 0.9188,
+        "f1": 0.9558,
+        "tp": 1233,
+        "fp": 5,
+        "fn": 109,
+        "frames": 1342,
+        "frames_with_second_person": 5,
+        "id_switches": 6
+      }
+    },
+    "28_2": {
+      "pose_only": {
+        "accuracy": 0.9322,
+        "precision": 0.9978,
+        "recall": 0.9342,
+        "f1": 0.9649,
+        "tp": 1362,
+        "fp": 3,
+        "fn": 96,
+        "frames": 1458,
+        "frames_with_second_person": 3
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.9273,
+        "precision": 1.0,
+        "recall": 0.9273,
+        "f1": 0.9623,
+        "tp": 1352,
+        "fp": 0,
+        "fn": 106,
+        "frames": 1458,
+        "frames_with_second_person": 0,
+        "id_switches": 11
+      }
+    },
+    "28_3": {
+      "pose_only": {
+        "accuracy": 0.9397,
+        "precision": 0.996,
+        "recall": 0.9432,
+        "f1": 0.9689,
+        "tp": 1246,
+        "fp": 5,
+        "fn": 75,
+        "frames": 1321,
+        "frames_with_second_person": 5
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.9373,
+        "precision": 0.9984,
+        "recall": 0.9387,
+        "f1": 0.9676,
+        "tp": 1240,
+        "fp": 2,
+        "fn": 81,
+        "frames": 1321,
+        "frames_with_second_person": 2,
+        "id_switches": 2
+      }
+    },
+    "29_1": {
+      "pose_only": {
+        "accuracy": 0.9202,
+        "precision": 0.9993,
+        "recall": 0.9209,
+        "f1": 0.9585,
+        "tp": 1373,
+        "fp": 1,
+        "fn": 118,
+        "frames": 1491,
+        "frames_with_second_person": 1
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.9202,
+        "precision": 1.0,
+        "recall": 0.9202,
+        "f1": 0.9584,
+        "tp": 1372,
+        "fp": 0,
+        "fn": 119,
+        "frames": 1491,
+        "frames_with_second_person": 0,
+        "id_switches": 1
+      }
+    },
+    "29_2": {
+      "pose_only": {
+        "accuracy": 0.9443,
+        "precision": 0.9993,
+        "recall": 0.9449,
+        "f1": 0.9713,
+        "tp": 1440,
+        "fp": 1,
+        "fn": 84,
+        "frames": 1524,
+        "frames_with_second_person": 1
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.9436,
+        "precision": 1.0,
+        "recall": 0.9436,
+        "f1": 0.971,
+        "tp": 1438,
+        "fp": 0,
+        "fn": 86,
+        "frames": 1524,
+        "frames_with_second_person": 0,
+        "id_switches": 0
+      }
+    },
+    "29_3": {
+      "pose_only": {
+        "accuracy": 0.9672,
+        "precision": 1.0,
+        "recall": 0.9672,
+        "f1": 0.9833,
+        "tp": 1857,
+        "fp": 0,
+        "fn": 63,
+        "frames": 1920,
+        "frames_with_second_person": 0
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.9651,
+        "precision": 1.0,
+        "recall": 0.9651,
+        "f1": 0.9822,
+        "tp": 1853,
+        "fp": 0,
+        "fn": 67,
+        "frames": 1920,
+        "frames_with_second_person": 0,
+        "id_switches": 1
+      }
+    },
+    "30_1": {
+      "pose_only": {
+        "accuracy": 0.9327,
+        "precision": 1.0,
+        "recall": 0.9327,
+        "f1": 0.9652,
+        "tp": 1358,
+        "fp": 0,
+        "fn": 98,
+        "frames": 1456,
+        "frames_with_second_person": 0
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.9293,
+        "precision": 1.0,
+        "recall": 0.9293,
+        "f1": 0.9633,
+        "tp": 1353,
+        "fp": 0,
+        "fn": 103,
+        "frames": 1456,
+        "frames_with_second_person": 0,
+        "id_switches": 1
+      }
+    },
+    "30_2": {
+      "pose_only": {
+        "accuracy": 0.8993,
+        "precision": 1.0,
+        "recall": 0.8993,
+        "f1": 0.947,
+        "tp": 1241,
+        "fp": 0,
+        "fn": 139,
+        "frames": 1380,
+        "frames_with_second_person": 0
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.8993,
+        "precision": 1.0,
+        "recall": 0.8993,
+        "f1": 0.947,
+        "tp": 1241,
+        "fp": 0,
+        "fn": 139,
+        "frames": 1380,
+        "frames_with_second_person": 0,
+        "id_switches": 2
+      }
+    },
+    "30_3": {
+      "pose_only": {
+        "accuracy": 0.9104,
+        "precision": 0.9971,
+        "recall": 0.9129,
+        "f1": 0.9531,
+        "tp": 1352,
+        "fp": 4,
+        "fn": 129,
+        "frames": 1481,
+        "frames_with_second_person": 3
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.9076,
+        "precision": 0.9993,
+        "recall": 0.9082,
+        "f1": 0.9515,
+        "tp": 1345,
+        "fp": 1,
+        "fn": 136,
+        "frames": 1481,
+        "frames_with_second_person": 1,
+        "id_switches": 5
+      }
+    },
+    "31_1": {
+      "pose_only": {
+        "accuracy": 0.9216,
+        "precision": 1.0,
+        "recall": 0.9216,
+        "f1": 0.9592,
+        "tp": 1258,
+        "fp": 0,
+        "fn": 107,
+        "frames": 1365,
+        "frames_with_second_person": 0
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.9172,
+        "precision": 1.0,
+        "recall": 0.9172,
+        "f1": 0.9568,
+        "tp": 1252,
+        "fp": 0,
+        "fn": 113,
+        "frames": 1365,
+        "frames_with_second_person": 0,
+        "id_switches": 2
+      }
+    },
+    "31_2": {
+      "pose_only": {
+        "accuracy": 0.9328,
+        "precision": 1.0,
+        "recall": 0.9328,
+        "f1": 0.9652,
+        "tp": 1263,
+        "fp": 0,
+        "fn": 91,
+        "frames": 1354,
+        "frames_with_second_person": 0
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.9298,
+        "precision": 1.0,
+        "recall": 0.9298,
+        "f1": 0.9636,
+        "tp": 1259,
+        "fp": 0,
+        "fn": 95,
+        "frames": 1354,
+        "frames_with_second_person": 0,
+        "id_switches": 2
+      }
+    },
+    "31_3": {
+      "pose_only": {
+        "accuracy": 0.9262,
+        "precision": 0.9991,
+        "recall": 0.9269,
+        "f1": 0.9617,
+        "tp": 1167,
+        "fp": 1,
+        "fn": 92,
+        "frames": 1259,
+        "frames_with_second_person": 1
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.9237,
+        "precision": 1.0,
+        "recall": 0.9237,
+        "f1": 0.9604,
+        "tp": 1163,
+        "fp": 0,
+        "fn": 96,
+        "frames": 1259,
+        "frames_with_second_person": 0,
+        "id_switches": 2
+      }
+    },
+    "32_1": {
+      "pose_only": {
+        "accuracy": 0.9038,
+        "precision": 0.9984,
+        "recall": 0.9051,
+        "f1": 0.9495,
+        "tp": 1268,
+        "fp": 2,
+        "fn": 133,
+        "frames": 1401,
+        "frames_with_second_person": 2
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.9036,
+        "precision": 1.0,
+        "recall": 0.9036,
+        "f1": 0.9494,
+        "tp": 1266,
+        "fp": 0,
+        "fn": 135,
+        "frames": 1401,
+        "frames_with_second_person": 0,
+        "id_switches": 1
+      }
+    },
+    "32_2": {
+      "pose_only": {
+        "accuracy": 0.9526,
+        "precision": 1.0,
+        "recall": 0.9526,
+        "f1": 0.9757,
+        "tp": 1227,
+        "fp": 0,
+        "fn": 61,
+        "frames": 1288,
+        "frames_with_second_person": 0
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.9495,
+        "precision": 1.0,
+        "recall": 0.9495,
+        "f1": 0.9741,
+        "tp": 1223,
+        "fp": 0,
+        "fn": 65,
+        "frames": 1288,
+        "frames_with_second_person": 0,
+        "id_switches": 1
+      }
+    },
+    "32_3": {
+      "pose_only": {
+        "accuracy": 0.9519,
+        "precision": 1.0,
+        "recall": 0.9519,
+        "f1": 0.9753,
+        "tp": 1206,
+        "fp": 0,
+        "fn": 61,
+        "frames": 1267,
+        "frames_with_second_person": 0
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.9471,
+        "precision": 1.0,
+        "recall": 0.9471,
+        "f1": 0.9728,
+        "tp": 1200,
+        "fp": 0,
+        "fn": 67,
+        "frames": 1267,
+        "frames_with_second_person": 0,
+        "id_switches": 2
+      }
+    },
+    "33_1": {
+      "pose_only": {
+        "accuracy": 0.9154,
+        "precision": 1.0,
+        "recall": 0.9154,
+        "f1": 0.9558,
+        "tp": 1179,
+        "fp": 0,
+        "fn": 109,
+        "frames": 1288,
+        "frames_with_second_person": 0
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.9115,
+        "precision": 1.0,
+        "recall": 0.9115,
+        "f1": 0.9537,
+        "tp": 1174,
+        "fp": 0,
+        "fn": 114,
+        "frames": 1288,
+        "frames_with_second_person": 0,
+        "id_switches": 1
+      }
+    },
+    "34_1": {
+      "pose_only": {
+        "accuracy": 0.924,
+        "precision": 1.0,
+        "recall": 0.924,
+        "f1": 0.9605,
+        "tp": 1228,
+        "fp": 0,
+        "fn": 101,
+        "frames": 1329,
+        "frames_with_second_person": 0
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.9225,
+        "precision": 1.0,
+        "recall": 0.9225,
+        "f1": 0.9597,
+        "tp": 1226,
+        "fp": 0,
+        "fn": 103,
+        "frames": 1329,
+        "frames_with_second_person": 0,
+        "id_switches": 1
+      }
+    },
+    "35_1": {
+      "pose_only": {
+        "accuracy": 0.9221,
+        "precision": 0.9983,
+        "recall": 0.9236,
+        "f1": 0.9595,
+        "tp": 1196,
+        "fp": 2,
+        "fn": 99,
+        "frames": 1295,
+        "frames_with_second_person": 2
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.9189,
+        "precision": 1.0,
+        "recall": 0.9189,
+        "f1": 0.9577,
+        "tp": 1190,
+        "fp": 0,
+        "fn": 105,
+        "frames": 1295,
+        "frames_with_second_person": 0,
+        "id_switches": 4
+      }
+    },
+    "36_1": {
+      "pose_only": {
+        "accuracy": 0.8833,
+        "precision": 1.0,
+        "recall": 0.8833,
+        "f1": 0.9381,
+        "tp": 1113,
+        "fp": 0,
+        "fn": 147,
+        "frames": 1260,
+        "frames_with_second_person": 0
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.8802,
+        "precision": 1.0,
+        "recall": 0.8802,
+        "f1": 0.9363,
+        "tp": 1109,
+        "fp": 0,
+        "fn": 151,
+        "frames": 1260,
+        "frames_with_second_person": 0,
+        "id_switches": 2
+      }
+    },
+    "37_1": {
+      "pose_only": {
+        "accuracy": 0.9531,
+        "precision": 0.9984,
+        "recall": 0.9545,
+        "f1": 0.976,
+        "tp": 1280,
+        "fp": 2,
+        "fn": 61,
+        "frames": 1341,
+        "frames_with_second_person": 2
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.953,
+        "precision": 1.0,
+        "recall": 0.953,
+        "f1": 0.9759,
+        "tp": 1278,
+        "fp": 0,
+        "fn": 63,
+        "frames": 1341,
+        "frames_with_second_person": 0,
+        "id_switches": 1
+      }
+    },
+    "38_1": {
+      "pose_only": {
+        "accuracy": 0.9015,
+        "precision": 1.0,
+        "recall": 0.9015,
+        "f1": 0.9482,
+        "tp": 1181,
+        "fp": 0,
+        "fn": 129,
+        "frames": 1310,
+        "frames_with_second_person": 0
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.9008,
+        "precision": 1.0,
+        "recall": 0.9008,
+        "f1": 0.9478,
+        "tp": 1180,
+        "fp": 0,
+        "fn": 130,
+        "frames": 1310,
+        "frames_with_second_person": 0,
+        "id_switches": 1
+      }
+    },
+    "39_1": {
+      "pose_only": {
+        "accuracy": 0.8992,
+        "precision": 0.9983,
+        "recall": 0.9005,
+        "f1": 0.9469,
+        "tp": 1195,
+        "fp": 2,
+        "fn": 132,
+        "frames": 1327,
+        "frames_with_second_person": 2
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.8953,
+        "precision": 1.0,
+        "recall": 0.8953,
+        "f1": 0.9447,
+        "tp": 1188,
+        "fp": 0,
+        "fn": 139,
+        "frames": 1327,
+        "frames_with_second_person": 0,
+        "id_switches": 3
+      }
+    },
+    "40_1": {
+      "pose_only": {
+        "accuracy": 0.8764,
+        "precision": 0.9975,
+        "recall": 0.8784,
+        "f1": 0.9341,
+        "tp": 1177,
+        "fp": 3,
+        "fn": 163,
+        "frames": 1340,
+        "frames_with_second_person": 3
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.8731,
+        "precision": 1.0,
+        "recall": 0.8731,
+        "f1": 0.9323,
+        "tp": 1170,
+        "fp": 0,
+        "fn": 170,
+        "frames": 1340,
+        "frames_with_second_person": 0,
+        "id_switches": 6
+      }
+    },
+    "41_1": {
+      "pose_only": {
+        "accuracy": 0.93,
+        "precision": 0.9993,
+        "recall": 0.9306,
+        "f1": 0.9637,
+        "tp": 1355,
+        "fp": 1,
+        "fn": 101,
+        "frames": 1456,
+        "frames_with_second_person": 1
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.9299,
+        "precision": 1.0,
+        "recall": 0.9299,
+        "f1": 0.9637,
+        "tp": 1354,
+        "fp": 0,
+        "fn": 102,
+        "frames": 1456,
+        "frames_with_second_person": 0,
+        "id_switches": 1
+      }
+    },
+    "41_2": {
+      "pose_only": {
+        "accuracy": 0.8712,
+        "precision": 0.9963,
+        "recall": 0.874,
+        "f1": 0.9312,
+        "tp": 1082,
+        "fp": 4,
+        "fn": 156,
+        "frames": 1238,
+        "frames_with_second_person": 4
+      },
+      "pose_with_tracker": {
+        "accuracy": 0.8716,
+        "precision": 1.0,
+        "recall": 0.8716,
+        "f1": 0.9314,
+        "tp": 1079,
+        "fp": 0,
+        "fn": 159,
+        "frames": 1238,
+        "frames_with_second_person": 0,
+        "id_switches": 2
+      }
+    }
+  },
+  "elapsed_s": 1800.2,
+  "ms_per_frame_pose_and_tracker": 46.68,
+  "delta": {
+    "accuracy": -0.0022,
+    "precision": 0.001,
+    "recall": -0.0031,
+    "f1": -0.0012
+  },
+  "config": {
+    "split": "test",
+    "videos": [
+      "27_1",
+      "27_2",
+      "27_3",
+      "28_1",
+      "28_2",
+      "28_3",
+      "29_1",
+      "29_2",
+      "29_3",
+      "30_1",
+      "30_2",
+      "30_3",
+      "31_1",
+      "31_2",
+      "31_3",
+      "32_1",
+      "32_2",
+      "32_3",
+      "33_1",
+      "34_1",
+      "35_1",
+      "36_1",
+      "37_1",
+      "38_1",
+      "39_1",
+      "40_1",
+      "41_1",
+      "41_2"
+    ],
+    "fps_sampling": 10,
+    "min_joints": 6,
+    "conf_threshold": 0.2,
+    "pose_weights": "weights/custom_yolo11n_pose_s1_20.pt",
+    "pose": {
+      "weights": "weights/custom_yolo11n_pose_s1_20.pt",
+      "base_weights": "yolo11n-pose.pt",
+      "imgsz": 640,
+      "conf": 0.35,
+      "iou": 0.5,
+      "max_det": 10,
+      "device": "auto",
+      "half": false,
+      "head_removal": true,
+      "upper_body_bonus": 0.5,
+      "backend": "pytorch"
+    },
+    "tracker": {
+      "enabled": true,
+      "max_age": 30,
+      "n_init": 3,
+      "max_iou_distance": 0.7,
+      "max_cosine_distance": 0.2,
+      "nn_budget": 100,
+      "ema_alpha": 0.9,
+      "mc_lambda": 0.98,
+      "only_position": false,
+      "appearance": "histogram",
+      "reid_weights": null
+    },
+    "config_file": "configs/default.yaml"
+  }
+}
