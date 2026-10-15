@@ -1,0 +1,241 @@
+{
+ "splits": {
+  "train": {
+   "videos": 60,
+   "subjects": 20,
+   "sampled_frames": 81230,
+   "label_frames": [
+    11080,
+    11267,
+    6245,
+    14196,
+    18109,
+    20333
+   ],
+   "custom_rows": 74698,
+   "custom_coverage": 0.9196,
+   "coco_n_rows": 51257,
+   "coco_n_coverage": 0.631
+  },
+  "val": {
+   "videos": 18,
+   "subjects": 6,
+   "sampled_frames": 27074,
+   "label_frames": [
+    3041,
+    3313,
+    1821,
+    5536,
+    7269,
+    6094
+   ],
+   "custom_rows": 25074,
+   "custom_coverage": 0.9261,
+   "coco_n_rows": 15446,
+   "coco_n_coverage": 0.5705
+  },
+  "test": {
+   "videos": 28,
+   "subjects": 15,
+   "sampled_frames": 38563,
+   "label_frames": [
+    5093,
+    5320,
+    3783,
+    6230,
+    9029,
+    9108
+   ],
+   "custom_rows": 35584,
+   "custom_coverage": 0.9227,
+   "coco_n_rows": 23980,
+   "coco_n_coverage": 0.6218
+  }
+ },
+ "stgcn": {
+  "per_class": {
+   "Reach To Shelf": {
+    "precision": 0.7351,
+    "recall": 0.5627,
+    "f1-score": 0.6372
+   },
+   "Retract From Shelf": {
+    "precision": 0.6998,
+    "recall": 0.6362,
+    "f1-score": 0.6618
+   },
+   "Hand In Shelf": {
+    "precision": 0.6666,
+    "recall": 0.6472,
+    "f1-score": 0.653
+   },
+   "Inspect Product": {
+    "precision": 0.6388,
+    "recall": 0.77,
+    "f1-score": 0.6972
+   },
+   "Inspect Shelf": {
+    "precision": 0.7525,
+    "recall": 0.7814,
+    "f1-score": 0.765
+   }
+  },
+  "support": {
+   "Reach To Shelf": 1000,
+   "Retract From Shelf": 1063,
+   "Hand In Shelf": 753,
+   "Inspect Product": 1245,
+   "Inspect Shelf": 1801
+  },
+  "confusion_sum": [
+   [
+    1688,
+    226,
+    156,
+    326,
+    604
+   ],
+   [
+    160,
+    2029,
+    510,
+    245,
+    245
+   ],
+   [
+    140,
+    381,
+    1462,
+    238,
+    38
+   ],
+   [
+    120,
+    141,
+    77,
+    2876,
+    521
+   ],
+   [
+    190,
+    153,
+    9,
+    829,
+    4222
+   ]
+  ],
+  "best_epochs": [
+   39,
+   36,
+   38
+  ],
+  "val_acc": [
+   0.7112,
+   0.7107,
+   0.7061
+  ],
+  "train_seconds": [
+   7225.9,
+   6865.0,
+   7125.5
+  ],
+  "e2e_scored_acc": [
+   0.6939,
+   0.6934,
+   0.6973
+  ]
+ },
+ "lstm": {
+  "per_class": {
+   "Reach To Shelf": {
+    "precision": 0.7227,
+    "recall": 0.5793,
+    "f1-score": 0.643
+   },
+   "Retract From Shelf": {
+    "precision": 0.6972,
+    "recall": 0.6447,
+    "f1-score": 0.6698
+   },
+   "Hand In Shelf": {
+    "precision": 0.638,
+    "recall": 0.664,
+    "f1-score": 0.6507
+   },
+   "Inspect Product": {
+    "precision": 0.6547,
+    "recall": 0.6862,
+    "f1-score": 0.6692
+   },
+   "Inspect Shelf": {
+    "precision": 0.7221,
+    "recall": 0.796,
+    "f1-score": 0.7569
+   }
+  },
+  "support": {
+   "Reach To Shelf": 1000,
+   "Retract From Shelf": 1063,
+   "Hand In Shelf": 753,
+   "Inspect Product": 1245,
+   "Inspect Shelf": 1801
+  },
+  "confusion_sum": [
+   [
+    1738,
+    198,
+    191,
+    285,
+    588
+   ],
+   [
+    192,
+    2056,
+    529,
+    196,
+    216
+   ],
+   [
+    158,
+    373,
+    1500,
+    164,
+    64
+   ],
+   [
+    109,
+    154,
+    116,
+    2563,
+    793
+   ],
+   [
+    209,
+    169,
+    15,
+    709,
+    4301
+   ]
+  ],
+  "best_epochs": [
+   35,
+   31,
+   19
+  ],
+  "val_acc": [
+   0.7209,
+   0.7202,
+   0.7214
+  ],
+  "train_seconds": [
+   536.5,
+   497.0,
+   382.0
+  ],
+  "e2e_scored_acc": [
+   0.6927,
+   0.6848,
+   0.692
+  ]
+ }
+}

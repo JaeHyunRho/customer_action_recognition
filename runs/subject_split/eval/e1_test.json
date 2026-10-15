@@ -1,0 +1,165 @@
+{
+  "a": {
+    "source": "test",
+    "seeds": [
+      {
+        "run": "runs/subject_split/action/e1_custom_stgcn_s42",
+        "seed": 42,
+        "accuracy": 0.6989,
+        "macro_f1": 0.6864,
+        "val_accuracy": 0.7112,
+        "best_epoch": 39,
+        "windows": 5862
+      },
+      {
+        "run": "runs/subject_split/action/e1_custom_stgcn_s43",
+        "seed": 43,
+        "accuracy": 0.6965,
+        "macro_f1": 0.6815,
+        "val_accuracy": 0.7107,
+        "best_epoch": 36,
+        "windows": 5862
+      },
+      {
+        "run": "runs/subject_split/action/e1_custom_stgcn_s44",
+        "seed": 44,
+        "accuracy": 0.6989,
+        "macro_f1": 0.6806,
+        "val_accuracy": 0.7061,
+        "best_epoch": 38,
+        "windows": 5862
+      }
+    ],
+    "accuracy_mean": 0.6981,
+    "accuracy_std": 0.0014,
+    "macro_f1_mean": 0.6828,
+    "macro_f1_std": 0.0031,
+    "subjects": [
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41"
+    ],
+    "subject_accuracy_seed_mean": [
+      0.7165,
+      0.7153,
+      0.707,
+      0.7092,
+      0.6773,
+      0.6563,
+      0.72,
+      0.7656,
+      0.6707,
+      0.714,
+      0.5821,
+      0.7041,
+      0.6839,
+      0.7579,
+      0.7031
+    ],
+    "subject_mean_accuracy": 0.6989,
+    "subject_bootstrap_ci95": [
+      0.676,
+      0.7186
+    ],
+    "n_subjects": 15,
+    "bootstrap_resamples": 10000
+  },
+  "b": {
+    "source": "test",
+    "seeds": [
+      {
+        "run": "runs/subject_split/action/e1_custom_lstm_s42",
+        "seed": 42,
+        "accuracy": 0.694,
+        "macro_f1": 0.6816,
+        "val_accuracy": 0.7209,
+        "best_epoch": 35,
+        "windows": 5862
+      },
+      {
+        "run": "runs/subject_split/action/e1_custom_lstm_s43",
+        "seed": 43,
+        "accuracy": 0.6871,
+        "macro_f1": 0.6728,
+        "val_accuracy": 0.7202,
+        "best_epoch": 31,
+        "windows": 5862
+      },
+      {
+        "run": "runs/subject_split/action/e1_custom_lstm_s44",
+        "seed": 44,
+        "accuracy": 0.6929,
+        "macro_f1": 0.6794,
+        "val_accuracy": 0.7214,
+        "best_epoch": 19,
+        "windows": 5862
+      }
+    ],
+    "accuracy_mean": 0.6913,
+    "accuracy_std": 0.0037,
+    "macro_f1_mean": 0.6779,
+    "macro_f1_std": 0.0046,
+    "subjects": [
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41"
+    ],
+    "subject_accuracy_seed_mean": [
+      0.685,
+      0.7494,
+      0.7299,
+      0.6726,
+      0.6768,
+      0.647,
+      0.685,
+      0.74,
+      0.6687,
+      0.6864,
+      0.5646,
+      0.7007,
+      0.6821,
+      0.8316,
+      0.6551
+    ],
+    "subject_mean_accuracy": 0.6917,
+    "subject_bootstrap_ci95": [
+      0.6634,
+      0.7202
+    ],
+    "n_subjects": 15,
+    "bootstrap_resamples": 10000
+  },
+  "paired_a_minus_b": {
+    "mean_difference": 0.0072,
+    "bootstrap_ci95": [
+      -0.0092,
+      0.0214
+    ],
+    "subjects_where_a_is_higher": 12,
+    "n_subjects": 15
+  }
+}

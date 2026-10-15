@@ -1,0 +1,58 @@
+{
+ "weights": "weights/custom_yolo11n_pose_s1_20.pt",
+ "run_dir": "runs/pose/runs/subject_split/pose/custom_yolo11n_pose_s1_20",
+ "teacher": "weights/yolo11x-pose.pt",
+ "label_rule": "1 fps, person conf >= 0.6, >= 8 joints with score >= 0.3, one person per frame, head removed before saving (12 joints)",
+ "subjects": "1-20 (60 videos); 48 train videos / 12 validation videos (sorted by name, shuffled with seed 42, first 20%)",
+ "val_videos": [
+  "13_1",
+  "13_3",
+  "15_2",
+  "16_2",
+  "16_3",
+  "17_3",
+  "20_1",
+  "2_1",
+  "2_3",
+  "8_1",
+  "8_2",
+  "9_2"
+ ],
+ "frames": {
+  "labelled": 5780,
+  "skipped": 2370,
+  "train_images": 4581,
+  "val_images": 1199
+ },
+ "training": {
+  "imgsz": 480,
+  "batch": 24,
+  "epochs_run": 40,
+  "best_epoch": 40,
+  "patience": 12,
+  "start": "weights/yolo11n-pose.pt"
+ },
+ "oks_sigmas_loss_and_val": [
+  0.0527,
+  0.0527,
+  0.048,
+  0.048,
+  0.0413,
+  0.0413,
+  0.107,
+  0.107,
+  0.087,
+  0.087,
+  0.089,
+  0.089
+ ],
+ "teacher_agreement_on_pose_val": {
+  "box_mAP50": 0.9945,
+  "box_mAP50_95": 0.9326,
+  "pose_precision": 0.913,
+  "pose_recall": 0.9124,
+  "pose_mAP50": 0.8786,
+  "pose_mAP50_95": 0.4335
+ },
+ "note": "mAP is agreement with the yolo11x teacher on pseudo-labels, not human annotation; OKS sigmas are the COCO body sigmas with shoulder/elbow/wrist divided by 1.5, not the standard COCO table"
+}

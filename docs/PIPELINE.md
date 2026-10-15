@@ -66,6 +66,9 @@ Jetson에서 torch 빌드가 드라이버와 맞지 않으면 여기서 조용�
 
 - 자세추정 학습: `oks_sigmas()`가 해당 관절의 OKS 시그마를 `1/(1+0.5)`배로
   줄입니다. 시그마가 작을수록 그 관절의 오차에 손실이 더 민감해집니다.
+  이 값은 pose 데이터셋 yaml의 `kpt_oks_sigmas`로 기록되어야 ultralytics의
+  손실과 검증에 반영됩니다(`write_dataset_yaml`). 12관절 모델에서
+  `ultralytics.utils.metrics.OKS_SIGMA`를 덮어쓰는 방식은 효과가 없습니다.
 - 특징 가중: `keypoint_weights()`가 좌표에 곱할 1.5배 가중치를 제공합니다.
 
 ### 3. 추적 — `car/pose/tracker.py`
@@ -111,8 +114,10 @@ motion-only 비용으로도 동작하도록 고쳤습니다.
 [PAPER_GAPS.md §1.1](PAPER_GAPS.md)에 있습니다.
 
 기본값 `torso`는 엉덩이 중점으로 평행이동하고, 몸통 길이와 어깨 너비 중 큰 값의
-클립 중앙값으로 나눕니다. 프레임마다 다시 스케일하지 않는 이유는, 그렇게 하면
-팔을 뻗을 때 몸 전체가 수축하는 것처럼 보여 동작 정보가 사라지기 때문입니다.
+**윈도우 중앙값**으로 나눕니다. 중앙값은 함수에 넘겨받은 30장에서 계산하며 클립
+전체를 보지 않습니다. 따라서 결정 시점 이후의 프레임은 쓰이지 않고, 실시간 버퍼도
+쌓인 30장에 같은 함수를 호출합니다. 프레임마다 다시 스케일하지 않는 이유는, 그렇게
+하면 팔을 뻗을 때 몸 전체가 수축하는 것처럼 보여 동작 정보가 사라지기 때문입니다.
 
 ### 6. 행동 분류 — `car/models/`
 
@@ -141,26 +146,36 @@ motion-only 비용으로도 동작하도록 고쳤습니다.
 MERL 영상 + .mat 라벨          자체 촬영 영상 (행동별 폴더)
         │                              │
         └──────────┬───────────────────┘
-                   ▼  tools/extract_skeletons.py
-         YOLOv11n-Pose + StrongSORT
+                   ▼  tools/extract_skeletons.py --split train|val|test
+         YOLOv11n-Pose + StrongSORT (피험자 분할별로 따로 추출)
                    │
                    ▼  car/datasets/sequence.py :: SkeletonStore
-         skeletons.npz  (프레임 단위 평탄 테이블)
+         {train,val,test}_raw.npz  (프레임 단위 평탄 테이블)
                    │
-                   ▼  build_windows(window=30, stride=5)
-         (clip, track) 연속 구간을 30프레임 윈도우로 절단
+                   ▼  tools/subject_split.py prepare (keep_primary_track)
+         프레임당 박스 면적이 가장 큰 1명만 남김, track id = 1
                    │
-                   ▼  car/train/train_action.py
-         클립 단위 train/val 분할 → 학습 → best.pt
+                   ▼  build_windows(window=30, stride=5, max_gap=12)
+         같은 클립의 연속 구간을 검출 30개짜리 윈도우로 절단
+                   │
+                   ▼  car/train/train_action.py --train-store/--val-store/--test-store
+         학습 파일로 갱신 → 검증 파일로 조기 종료 → 테스트 파일 1회 평가
 ```
 
 `SkeletonStore`가 프레임 단위 평탄 테이블인 이유는, 윈도우 길이나 stride를
 바꿀 때 영상에서 skeleton을 다시 뽑지 않아도 되게 하기 위해서입니다.
 윈도우는 `__getitem__` 시점에 잘립니다.
 
-윈도우는 같은 `(clip, track)` 안에서만 만들어지고, 프레임 번호 간격이 6을
-넘으면 구간을 끊습니다. 10 fps 샘플링에서 한두 프레임 미검출은 허용하되,
-긴 공백을 가로지르는 시퀀스는 만들지 않기 위해서입니다.
+윈도우는 같은 `(clip, track)` 안에서만 만들어지고, 원본 프레임 번호 간격이 12를
+넘으면 구간을 끊습니다(`sequence.max_gap`). 10 fps 샘플링의 정상 간격은 3이므로
+연속 3프레임 미검출까지는 한 구간으로 잇습니다. 빠진 프레임은 보간하거나 0으로
+채우지 않으므로, 한 윈도우는 "30프레임"이 아니라 "저장된 검출 30개"입니다.
+결측이 없으면 2.9초이고, 간격이 벌어지면 그보다 길어집니다.
+
+실시간 버퍼(`BufferBank`)는 `max_gap`으로 구간을 자르지 않고 최근 30개를 그대로
+씁니다. 또한 버퍼는 들어오는 프레임을 모두 쌓으므로, 30 fps 입력을 그대로 넣으면
+1초 분량을 분류하게 됩니다. 학습과 같은 시간 축(10 fps × 30)을 쓰려면
+`--set runtime.max_fps=10`을 지정합니다.
 
 ---
 

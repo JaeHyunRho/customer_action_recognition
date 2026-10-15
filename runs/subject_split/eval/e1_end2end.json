@@ -1,0 +1,153 @@
+{
+  "a": {
+    "source": "end2end.json",
+    "seeds": [
+      {
+        "run": "runs/subject_split/action/e1_custom_stgcn_s42",
+        "accuracy": 0.6909,
+        "macro_f1": 0.68,
+        "coverage": 0.9958,
+        "end_frames": 5892
+      },
+      {
+        "run": "runs/subject_split/action/e1_custom_stgcn_s43",
+        "accuracy": 0.6904,
+        "macro_f1": 0.6771,
+        "coverage": 0.9958,
+        "end_frames": 5892
+      },
+      {
+        "run": "runs/subject_split/action/e1_custom_stgcn_s44",
+        "accuracy": 0.6943,
+        "macro_f1": 0.677,
+        "coverage": 0.9958,
+        "end_frames": 5892
+      }
+    ],
+    "accuracy_mean": 0.6919,
+    "accuracy_std": 0.0021,
+    "macro_f1_mean": 0.678,
+    "macro_f1_std": 0.0017,
+    "subjects": [
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41"
+    ],
+    "subject_accuracy_seed_mean": [
+      0.7217,
+      0.7194,
+      0.6957,
+      0.7063,
+      0.664,
+      0.6427,
+      0.7013,
+      0.7468,
+      0.6707,
+      0.6726,
+      0.5873,
+      0.6958,
+      0.6871,
+      0.7436,
+      0.7111
+    ],
+    "subject_mean_accuracy": 0.6911,
+    "subject_bootstrap_ci95": [
+      0.6699,
+      0.7095
+    ],
+    "n_subjects": 15,
+    "bootstrap_resamples": 10000
+  },
+  "b": {
+    "source": "end2end.json",
+    "seeds": [
+      {
+        "run": "runs/subject_split/action/e1_custom_lstm_s42",
+        "accuracy": 0.6897,
+        "macro_f1": 0.6784,
+        "coverage": 0.9958,
+        "end_frames": 5892
+      },
+      {
+        "run": "runs/subject_split/action/e1_custom_lstm_s43",
+        "accuracy": 0.6819,
+        "macro_f1": 0.6692,
+        "coverage": 0.9958,
+        "end_frames": 5892
+      },
+      {
+        "run": "runs/subject_split/action/e1_custom_lstm_s44",
+        "accuracy": 0.6891,
+        "macro_f1": 0.6776,
+        "coverage": 0.9958,
+        "end_frames": 5892
+      }
+    ],
+    "accuracy_mean": 0.6869,
+    "accuracy_std": 0.0043,
+    "macro_f1_mean": 0.6751,
+    "macro_f1_std": 0.0051,
+    "subjects": [
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41"
+    ],
+    "subject_accuracy_seed_mean": [
+      0.692,
+      0.7665,
+      0.7173,
+      0.6637,
+      0.673,
+      0.631,
+      0.6848,
+      0.7227,
+      0.6707,
+      0.6529,
+      0.573,
+      0.7094,
+      0.6786,
+      0.8137,
+      0.6502
+    ],
+    "subject_mean_accuracy": 0.6866,
+    "subject_bootstrap_ci95": [
+      0.6595,
+      0.7147
+    ],
+    "n_subjects": 15,
+    "bootstrap_resamples": 10000
+  },
+  "paired_a_minus_b": {
+    "mean_difference": 0.0044,
+    "bootstrap_ci95": [
+      -0.0123,
+      0.02
+    ],
+    "subjects_where_a_is_higher": 9,
+    "n_subjects": 15
+  }
+}

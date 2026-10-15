@@ -93,7 +93,8 @@ def normalize_sequence(
         scale = np.maximum(torso_len, shoulder_w)
         good = scale > _EPS
         if good.any():
-            # A single scale per clip keeps relative limb motion intact.
+            # One scale per window -- the median over the T frames passed in, not
+            # over the whole clip -- keeps relative limb motion intact.
             ref = float(np.median(scale[good]))
         else:
             ref = 1.0

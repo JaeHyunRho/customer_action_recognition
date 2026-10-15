@@ -1,0 +1,97 @@
+{
+  "device": {
+    "platform": "Linux-5.15.148-tegra-aarch64-with-glibc2.35",
+    "machine": "aarch64",
+    "python": "3.10.12",
+    "torch": "2.9.1",
+    "cuda_available": true,
+    "gpu": "Orin",
+    "board": "NVIDIA Jetson Orin NX Engineering Reference Developer Kit Super",
+    "cpu_count": 8,
+    "ram_total_gb": 16.4
+  },
+  "config": {
+    "window": 30,
+    "imgsz": 640,
+    "keypoints": 12,
+    "normalize": "torso",
+    "tracker": "histogram"
+  },
+  "action_models": {
+    "stgcn": {
+      "parameters": 1018413,
+      "latency_ms": 8.803,
+      "throughput_hz": 113.6,
+      "batch": 1
+    },
+    "lstm": {
+      "parameters": 353549,
+      "latency_ms": 1.532,
+      "throughput_hz": 652.7,
+      "batch": 1
+    }
+  },
+  "pipeline_none": {
+    "action_model": "none",
+    "frames": 500,
+    "elapsed_s": 21.85,
+    "fps": 22.88,
+    "mean_detections": 1.0,
+    "pose_ms": 40.56,
+    "pose_p95_ms": 41.64,
+    "track_ms": 1.92,
+    "action_ms": 0.0,
+    "total_ms": 42.52,
+    "memory": {
+      "process_rss_mb": 1269.1,
+      "ram_used_mb": 9714.1,
+      "ram_total_mb": 16416.1,
+      "gpu_alloc_mb": 32.1,
+      "gpu_reserved_mb": 92.3,
+      "gpu_used_mb": 9715.5,
+      "gpu_total_mb": 16416.1
+    }
+  },
+  "pipeline_lstm": {
+    "action_model": "lstm",
+    "frames": 500,
+    "elapsed_s": 24.14,
+    "fps": 20.71,
+    "mean_detections": 1.0,
+    "pose_ms": 40.41,
+    "pose_p95_ms": 41.76,
+    "track_ms": 1.93,
+    "action_ms": 4.7,
+    "total_ms": 47.1,
+    "memory": {
+      "process_rss_mb": 1278.0,
+      "ram_used_mb": 9715.7,
+      "ram_total_mb": 16416.1,
+      "gpu_alloc_mb": 33.5,
+      "gpu_reserved_mb": 92.3,
+      "gpu_used_mb": 9716.9,
+      "gpu_total_mb": 16416.1
+    }
+  },
+  "pipeline_stgcn": {
+    "action_model": "stgcn",
+    "frames": 500,
+    "elapsed_s": 28.59,
+    "fps": 17.49,
+    "mean_detections": 1.0,
+    "pose_ms": 40.79,
+    "pose_p95_ms": 42.1,
+    "track_ms": 1.91,
+    "action_ms": 13.23,
+    "total_ms": 55.98,
+    "memory": {
+      "process_rss_mb": 1277.3,
+      "ram_used_mb": 9720.8,
+      "ram_total_mb": 16416.1,
+      "gpu_alloc_mb": 47.2,
+      "gpu_reserved_mb": 104.9,
+      "gpu_used_mb": 9722.5,
+      "gpu_total_mb": 16416.1
+    }
+  }
+}

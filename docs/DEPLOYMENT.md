@@ -177,6 +177,14 @@ python3 tools/run_recognition.py --source 0 --set runtime.action_every=3
 30프레임 버퍼는 한 프레임마다 크게 바뀌지 않으므로 매 프레임 분류할 필요가 없습니다.
 3프레임마다 분류해도 체감 지연은 거의 없습니다.
 
+**입력 프레임율에 주의.** 행동 모델은 10 fps로 샘플링한 30개(약 3초)로 학습됩니다.
+버퍼는 들어오는 프레임을 모두 쌓으므로 30 fps 입력을 그대로 넣으면 1초 분량만
+분류하게 됩니다. 학습과 같은 시간 축을 쓰려면 다음을 지정합니다.
+
+```bash
+python3 tools/run_recognition.py --source 0 --set runtime.max_fps=10
+```
+
 ### 5.4 FP16
 
 GPU가 활성화된 경우에만 의미가 있습니다.
@@ -206,8 +214,10 @@ python3 tools/run_recognition.py --source 0 \
 
 ### 5.6 모델 선택
 
-LSTM이 ST-GCN보다 파라미터가 약 60만 개 적습니다. 논문에서는 정확도가 8%p 낮지만
-fps는 더 높습니다. 어느 쪽이 맞는지는 용도에 달려 있습니다.
+LSTM이 ST-GCN보다 파라미터가 약 66만 개 적습니다. 논문은 정확도가 8%p 낮다고
+보고하지만, 테스트 피험자 27–41에서 측정한 차이는 +0.007(95% CI −0.009~+0.021)로
+확인되지 않았습니다([RESULTS.md](RESULTS.md) §2.3). 온디바이스에서는 LSTM이
+합리적인 선택입니다.
 
 ```bash
 python3 tools/run_recognition.py --source 0 --weights runs/action/lstm/best.pt
@@ -256,6 +266,9 @@ python3 tools/export_models.py --checkpoint runs/action/lstm/best.pt \
 int8 양자화가 정확도를 크게 잃습니다.
 
 행동 모델은 35만~102만 파라미터로 작아서 양자화 이득이 제한적입니다.
+PyTorch dynamic int8로 변환한 LSTM은 파일이 1.42 MB에서 0.39 MB로 줄고, 테스트 피험자
+27–41에서의 정확도는 0.691에서 0.690으로 유지됩니다(seed 3개 평균, [RESULTS.md](RESULTS.md) §2.4).
+ST-GCN은 합성곱 기반이라 이 변환으로 크기가 변하지 않습니다.
 pose 모델을 먼저 변환하십시오.
 
 ---

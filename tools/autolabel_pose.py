@@ -13,6 +13,10 @@ The teacher runs at a high confidence threshold and only its single best
 detection per frame is kept, because a wrong pseudo-label is worse than a
 missing one.
 
+Only the official training subjects (1-20) are labelled by default, so the pose
+model never sees a frame of the action-recognition validation or test subjects.
+The train/val split is by video: every frame of a video lands on one side.
+
 Usage::
 
     python3 tools/autolabel_pose.py --videos data/raw/merl/videos \
@@ -22,11 +26,13 @@ Usage::
 from __future__ import annotations
 
 import argparse
+import json
 import logging
 import random
+import re
 import sys
 from pathlib import Path
-from typing import List, Optional, Tuple
+from typing import List, Optional, Set, Tuple
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
@@ -41,6 +47,25 @@ from car.train.train_pose import write_dataset_yaml  # noqa: E402
 LOGGER = logging.getLogger("autolabel")
 
 _VIDEO_EXT = {".mp4", ".avi", ".mov", ".mkv"}
+_NAME_RE = re.compile(r"^(?P<subject>\d+)_(?P<session>\d+)")
+
+
+def parse_subjects(spec: str) -> Optional[Set[int]]:
+    """``"1-20"`` or ``"1-5,9"`` -> a set of subject ids; ``"all"`` -> no filter."""
+    if spec.strip().lower() == "all":
+        return None
+    wanted: Set[int] = set()
+    for part in spec.split(","):
+        lo, _, hi = part.strip().partition("-")
+        wanted.update(range(int(lo), int(hi or lo) + 1))
+    return wanted
+
+
+def split_videos(videos: List[Path], val_ratio: float, seed: int) -> Set[str]:
+    """Names of the validation videos: sort by name, shuffle with ``seed``, take the head."""
+    order = sorted(videos, key=lambda p: p.name)
+    random.Random(seed).shuffle(order)
+    return {p.name for p in order[: int(round(len(order) * val_ratio))]}
 
 
 def to_yolo_pose_line(
@@ -88,7 +113,11 @@ def main(argv=None) -> int:
                         help="per-keypoint score below which a joint is marked unlabelled")
     parser.add_argument("--min-keypoints", type=int, default=8,
                         help="skip a frame unless this many joints are confident")
-    parser.add_argument("--val-ratio", type=float, default=0.2)
+    parser.add_argument("--subjects", default="1-20",
+                        help="subject ids to label, from the {subject}_{session} file name "
+                             "(default 1-20, the official training subjects; 'all' disables)")
+    parser.add_argument("--val-ratio", type=float, default=0.2,
+                        help="share of the videos (not frames) held out for pose validation")
     parser.add_argument("--max-frames", type=int, default=None, help="global cap")
     parser.add_argument("--imgsz", type=int, default=640)
     parser.add_argument("--keep-head", action="store_true",
@@ -113,6 +142,22 @@ def main(argv=None) -> int:
         return 1
     LOGGER.info("found %d videos", len(videos))
 
+    wanted = parse_subjects(args.subjects)
+    if wanted is not None:
+        kept_videos = []
+        for video in videos:
+            m = _NAME_RE.match(video.stem)
+            if m is not None and int(m.group("subject")) in wanted:
+                kept_videos.append(video)
+        LOGGER.info("subjects %s: %d of %d videos", args.subjects, len(kept_videos), len(videos))
+        videos = kept_videos
+        if not videos:
+            LOGGER.error("no video matches --subjects %s", args.subjects)
+            return 1
+
+    val_videos = split_videos(videos, args.val_ratio, args.seed)
+    LOGGER.info("pose validation videos (%d): %s", len(val_videos), sorted(val_videos))
+
     root = Path(args.out)
     for split in ("train", "val"):
         (root / "images" / split).mkdir(parents=True, exist_ok=True)
@@ -127,7 +172,6 @@ def main(argv=None) -> int:
         )
     teacher = YOLO(args.teacher, task="pose")
 
-    rng = random.Random(args.seed)
     kept = skipped = 0
 
     for vi, video in enumerate(videos, 1):
@@ -159,7 +203,7 @@ def main(argv=None) -> int:
                 skipped += 1
                 continue
 
-            split = "val" if rng.random() < args.val_ratio else "train"
+            split = "val" if video.name in val_videos else "train"
             stem = f"{video.stem}_{frame_idx:06d}"
             cv2.imwrite(str(root / "images" / split / f"{stem}.jpg"), frame)
             (root / "labels" / split / f"{stem}.txt").write_text(
@@ -181,7 +225,16 @@ def main(argv=None) -> int:
         )
         return 1
 
-    yaml_path = write_dataset_yaml(root, root / "dataset.yaml", head_removal=head_removal)
+    (root / "split.json").write_text(json.dumps({
+        "subjects": args.subjects,
+        "seed": args.seed,
+        "train": sorted(v.name for v in videos if v.name not in val_videos),
+        "val": sorted(val_videos),
+    }, indent=2))
+    yaml_path = write_dataset_yaml(
+        root, root / "dataset.yaml", head_removal=head_removal,
+        upper_body_bonus=cfg.pose.upper_body_bonus,
+    )
     LOGGER.info("labelled %d frames (%d skipped)", kept, skipped)
     LOGGER.info("dataset spec: %s", yaml_path)
     LOGGER.info(

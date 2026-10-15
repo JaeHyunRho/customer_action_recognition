@@ -39,12 +39,18 @@ def write_dataset_yaml(
     head_removal: bool = True,
     train_dir: str = "images/train",
     val_dir: str = "images/val",
+    upper_body_bonus: float = 0.5,
 ) -> Path:
     """Write the ultralytics dataset descriptor for a 12- or 17-keypoint set.
 
     ``flip_idx`` has to list the left/right partner of every joint, otherwise a
     horizontal-flip augmentation silently swaps limbs and teaches the model
     mirrored anatomy.
+
+    ``kpt_oks_sigmas`` is where the arm-joint weighting actually takes effect:
+    ultralytics reads it from this file for both the keypoint loss and the
+    validation OKS. Without it a 12-keypoint model is trained and scored with
+    one uniform sigma (1/12) for every joint.
     """
     root = Path(root).resolve()
     output = Path(output)
@@ -70,6 +76,9 @@ def write_dataset_yaml(
         "val": val_dir,
         "kpt_shape": [len(names), 3],
         "flip_idx": flip_idx,
+        "kpt_oks_sigmas": [
+            round(float(v), 6) for v in oks_sigmas(head_removal, upper_body_bonus)
+        ],
         "names": {0: "person"},
         "keypoint_names": names,
     }
@@ -80,23 +89,27 @@ def write_dataset_yaml(
 
 
 def apply_keypoint_weights(head_removal: bool = True, bonus: float = 0.5) -> np.ndarray:
-    """Patch ultralytics' OKS sigmas so arm joints are weighted harder.
+    """Return the OKS sigmas with the arm joints tightened by ``1 + bonus``.
 
-    ultralytics reads the sigma table off the model at loss-construction time,
-    so this has to run before ``model.train`` is called.
+    The sigmas reach ultralytics through ``kpt_oks_sigmas`` in the dataset yaml
+    (see :func:`write_dataset_yaml`). Assigning ``ultralytics.utils.metrics.
+    OKS_SIGMA`` here, as this function used to, changes nothing: the loss and
+    the validator import that table by name and ignore it for any keypoint
+    count other than 17.
     """
-    sigmas = oks_sigmas(head_removal=head_removal, upper_body_bonus=bonus)
-    try:
-        from ultralytics.utils import metrics as ul_metrics
+    return oks_sigmas(head_removal=head_removal, upper_body_bonus=bonus)
 
-        ul_metrics.OKS_SIGMA = sigmas.astype(np.float32)
-        LOGGER.info(
-            "patched OKS sigmas for %d keypoints; arm joints tightened by /%.1f",
-            len(sigmas), 1.0 + bonus,
+
+def _log_dataset_sigmas(data_yaml: str | Path) -> None:
+    spec = yaml.safe_load(Path(data_yaml).read_text(encoding="utf-8")) or {}
+    sigmas = spec.get("kpt_oks_sigmas")
+    if sigmas:
+        LOGGER.info("OKS sigmas from %s: %s", data_yaml, [round(float(v), 4) for v in sigmas])
+    else:
+        LOGGER.warning(
+            "%s has no kpt_oks_sigmas; ultralytics will use its defaults "
+            "(uniform 1/K unless K == 17)", data_yaml,
         )
-    except Exception as exc:  # pragma: no cover
-        LOGGER.warning("could not patch OKS sigmas (%s); training with defaults", exc)
-    return sigmas
 
 
 def train_pose(
@@ -112,7 +125,7 @@ def train_pose(
 
     from ..pose.estimator import resolve_device
 
-    apply_keypoint_weights(cfg.pose.head_removal, cfg.pose.upper_body_bonus)
+    _log_dataset_sigmas(data_yaml)
 
     start = weights or cfg.pose.base_weights
     model = YOLO(str(start), task="pose")
@@ -145,7 +158,7 @@ def train_pose(
     save_dir = Path(results.save_dir) if hasattr(results, "save_dir") else out_root / name
     best = save_dir / "weights" / "best.pt"
     if best.exists():
-        target = Path(cfg.paths.weights) / "custom_yolo11n_pose.pt"
+        target = Path(cfg.paths.weights) / f"{name}.pt"
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(best, target)
         LOGGER.info("copied best weights to %s", target)
@@ -172,7 +185,7 @@ def evaluate_pose(
 
     from ..pose.estimator import resolve_device
 
-    apply_keypoint_weights(cfg.pose.head_removal, cfg.pose.upper_body_bonus)
+    _log_dataset_sigmas(data_yaml)
     model = YOLO(str(weights), task="pose")
     metrics = model.val(
         data=str(data_yaml),

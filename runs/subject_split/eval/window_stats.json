@@ -1,0 +1,380 @@
+{
+  "data/processed/subject_split/custom_train.npz": {
+    "windows": 12117,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.0008,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 2.9,
+    "span_s_max": 3.2,
+    "rows": 74698,
+    "joints": 12,
+    "class_windows": [
+      2178,
+      2242,
+      1255,
+      2836,
+      3606
+    ]
+  },
+  "data/processed/subject_split/custom_val.npz": {
+    "windows": 4196,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.0007,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 2.9,
+    "span_s_max": 3.1,
+    "rows": 25074,
+    "joints": 12,
+    "class_windows": [
+      614,
+      662,
+      359,
+      1112,
+      1449
+    ]
+  },
+  "data/processed/subject_split/custom_test.npz": {
+    "windows": 5862,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.0017,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 2.9,
+    "span_s_max": 3.2,
+    "rows": 35584,
+    "joints": 12,
+    "class_windows": [
+      1000,
+      1063,
+      753,
+      1245,
+      1801
+    ]
+  },
+  "data/processed/subject_split/coco_n_train.npz": {
+    "windows": 5698,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.2169,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 3.2,
+    "span_s_max": 4.4,
+    "rows": 51257,
+    "joints": 12,
+    "class_windows": [
+      965,
+      1063,
+      724,
+      1745,
+      1201
+    ]
+  },
+  "data/processed/subject_split/coco_n_val.npz": {
+    "windows": 1683,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.2169,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 3.4,
+    "span_s_max": 3.7,
+    "rows": 15446,
+    "joints": 12,
+    "class_windows": [
+      220,
+      289,
+      188,
+      613,
+      373
+    ]
+  },
+  "data/processed/subject_split/coco_n_test.npz": {
+    "windows": 2587,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.1971,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 3.3,
+    "span_s_max": 4.2,
+    "rows": 23980,
+    "joints": 12,
+    "class_windows": [
+      409,
+      454,
+      488,
+      726,
+      510
+    ]
+  },
+  "data/processed/subject_split/teacher_x_train.npz": {
+    "windows": 10396,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.0684,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 3.1,
+    "span_s_max": 3.9,
+    "rows": 67953,
+    "joints": 12,
+    "class_windows": [
+      1841,
+      1963,
+      1114,
+      2729,
+      2749
+    ]
+  },
+  "data/processed/subject_split/teacher_x_val.npz": {
+    "windows": 3411,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.1047,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 3.2,
+    "span_s_max": 4.5,
+    "rows": 21937,
+    "joints": 12,
+    "class_windows": [
+      468,
+      561,
+      309,
+      1027,
+      1046
+    ]
+  },
+  "data/processed/subject_split/teacher_x_test.npz": {
+    "windows": 5125,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.0714,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 3.1,
+    "span_s_max": 3.6,
+    "rows": 32509,
+    "joints": 12,
+    "class_windows": [
+      841,
+      930,
+      711,
+      1199,
+      1444
+    ]
+  },
+  "data/processed/subject_split/teacher_x17_train.npz": {
+    "windows": 10396,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.0684,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 3.1,
+    "span_s_max": 3.9,
+    "rows": 67953,
+    "joints": 17,
+    "class_windows": [
+      1841,
+      1963,
+      1114,
+      2729,
+      2749
+    ]
+  },
+  "data/processed/subject_split/teacher_x17_val.npz": {
+    "windows": 3411,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.1047,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 3.2,
+    "span_s_max": 4.5,
+    "rows": 21937,
+    "joints": 17,
+    "class_windows": [
+      468,
+      561,
+      309,
+      1027,
+      1046
+    ]
+  },
+  "data/processed/subject_split/teacher_x17_test.npz": {
+    "windows": 5125,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.0714,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 3.1,
+    "span_s_max": 3.6,
+    "rows": 32509,
+    "joints": 17,
+    "class_windows": [
+      841,
+      930,
+      711,
+      1199,
+      1444
+    ]
+  },
+  "data/processed/subject_split/custom_train_isect.npz": {
+    "windows": 5647,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.2176,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 3.2,
+    "span_s_max": 4.4,
+    "rows": 50760,
+    "joints": 12,
+    "class_windows": [
+      953,
+      1055,
+      719,
+      1749,
+      1171
+    ]
+  },
+  "data/processed/subject_split/custom_val_isect.npz": {
+    "windows": 1644,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.2165,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 3.4,
+    "span_s_max": 3.8,
+    "rows": 15177,
+    "joints": 12,
+    "class_windows": [
+      215,
+      277,
+      180,
+      608,
+      364
+    ]
+  },
+  "data/processed/subject_split/custom_test_isect.npz": {
+    "windows": 2569,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.1942,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 3.2,
+    "span_s_max": 4.2,
+    "rows": 23804,
+    "joints": 12,
+    "class_windows": [
+      408,
+      453,
+      488,
+      718,
+      502
+    ]
+  },
+  "data/processed/subject_split/coco_n_train_isect.npz": {
+    "windows": 5647,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.2176,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 3.2,
+    "span_s_max": 4.4,
+    "rows": 50760,
+    "joints": 12,
+    "class_windows": [
+      953,
+      1055,
+      719,
+      1749,
+      1171
+    ]
+  },
+  "data/processed/subject_split/coco_n_val_isect.npz": {
+    "windows": 1644,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.2165,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 3.4,
+    "span_s_max": 3.8,
+    "rows": 15177,
+    "joints": 12,
+    "class_windows": [
+      215,
+      277,
+      180,
+      608,
+      364
+    ]
+  },
+  "data/processed/subject_split/coco_n_test_isect.npz": {
+    "windows": 2569,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.1942,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 3.2,
+    "span_s_max": 4.2,
+    "rows": 23804,
+    "joints": 12,
+    "class_windows": [
+      408,
+      453,
+      488,
+      718,
+      502
+    ]
+  },
+  "data/processed/subject_split/teacher_x_train_isect.npz": {
+    "windows": 5647,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.2176,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 3.2,
+    "span_s_max": 4.4,
+    "rows": 50760,
+    "joints": 12,
+    "class_windows": [
+      953,
+      1055,
+      719,
+      1749,
+      1171
+    ]
+  },
+  "data/processed/subject_split/teacher_x_val_isect.npz": {
+    "windows": 1644,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.2165,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 3.4,
+    "span_s_max": 3.8,
+    "rows": 15177,
+    "joints": 12,
+    "class_windows": [
+      215,
+      277,
+      180,
+      608,
+      364
+    ]
+  },
+  "data/processed/subject_split/teacher_x_test_isect.npz": {
+    "windows": 2569,
+    "sample_step": 3,
+    "share_with_gap_over_step": 0.1942,
+    "span_s_nominal": 2.9,
+    "span_s_median": 2.9,
+    "span_s_p95": 3.2,
+    "span_s_max": 4.2,
+    "rows": 23804,
+    "joints": 12,
+    "class_windows": [
+      408,
+      453,
+      488,
+      718,
+      502
+    ]
+  }
+}
